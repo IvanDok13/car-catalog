@@ -1,30 +1,19 @@
-import { cars } from './cars.data.js'
-import styles from './Home.module.css'
+// import { useMemo } from 'react'
+import { useState } from 'react'
+import CarItem from './car-item/CarItem'
+import { cars as carsData } from './cars.data.js'
+import CreateCarForm from './create-car-form/CreateCar'
 
 function Home() {
+	// const filteredCars = useMemo(() => cars.filter(car => car.price > 20000), [])
+	const [cars, setCars] = useState(carsData)
 	return (
 		<div>
 			<h1>Cars catalog</h1>
+			<CreateCarForm setCars={setCars} />
 			<div>
 				{cars.length ? (
-					cars.map(car => (
-						<div key={car.id} className={styles.item}>
-							<div
-								className={styles.image}
-								style={{ backgroundImage: `url(${car.image})` }}
-							></div>
-							<div className={styles.info}>
-								<h2>{car.name}</h2>
-								<p>
-									{new Intl.NumberFormat('ru-RU', {
-										style: 'currency',
-										currency: 'USD',
-									}).format(car.price)}
-								</p>
-								<button>Read more</button>
-							</div>
-						</div>
-					))
+					cars.map(car => <CarItem key={car.id} car={car} />)
 				) : (
 					<p>There are not cars</p>
 				)}
