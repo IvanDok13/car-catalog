@@ -1,5 +1,6 @@
 // import { useMemo } from 'react'
-import { useContext, useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useContext } from 'react'
 import { AuthContext } from '../../../providers/AuthProvider'
 import { CarService } from '../../../services/car.service'
 import styles from './Home.module.css'
@@ -7,7 +8,21 @@ import CarItem from './car-item/CarItem'
 import CreateCarForm from './create-car-form/CreateCar'
 
 function Home() {
-	const [cars, setCars] = useState([])
+	//=================== CASH DATA =====================
+	const { data, isLoading, error } = useQuery({
+		queryKey: ['cars'],
+		queryFn: () => CarService.getAll(),
+	})
+	//=================== CONTEXT =====================
+	// const [cars, setCars] = useState([])
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		const data = await CarService.getAll()
+	// 		setCars(data)
+	// 	}
+
+	// 	fetchData()
+	// }, [])
 	//=================== FILTER =====================
 
 	// const filteredCars = useMemo(() => cars.filter(car => car.price > 20000), [])
@@ -24,16 +39,10 @@ function Home() {
 	// 	fetchData()
 	// }, [])
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const data = await CarService.getAll()
-			setCars(data)
-		}
-
-		fetchData()
-	}, [])
-
 	const { user, setUser } = useContext(AuthContext)
+
+	if (isLoading) return <p>Loading...</p>
+	if (error) return <p>Error</p>
 
 	return (
 		<div>
@@ -48,10 +57,10 @@ function Home() {
 				<button onClick={() => setUser({ name: 'Max' })}>Login</button>
 			)}
 
-			<CreateCarForm setCars={setCars} />
+			<CreateCarForm />
 			<div className={styles.cars}>
-				{cars.length ? (
-					cars.map(car => <CarItem key={car.id} car={car} />)
+				{data.length ? (
+					data.map(car => <CarItem key={car.id} car={car} />)
 				) : (
 					<p>There are not cars</p>
 				)}

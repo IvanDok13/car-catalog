@@ -6,7 +6,7 @@ import styles from './CreateCarForm.module.css'
 // 	price: '',
 // 	image: '',
 // }
-const CreateCarForm = ({ setCars }) => {
+const CreateCarForm = () => {
 	// const [data, setData] = useState(clearData)
 
 	const {
@@ -21,7 +21,7 @@ const CreateCarForm = ({ setCars }) => {
 	// const createCar = e => {
 	// e.preventDefault()
 	const createCar = data => {
-		setCars(prev => [{ id: prev.length + 1, ...data }, ...prev])
+		// setCars(prev => [{ id: prev.length + 1, ...data }, ...prev])
 
 		reset()
 	}
