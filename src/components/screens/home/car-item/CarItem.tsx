@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../Home.module.css'
 import Price from './Price'
 
 function CarItem({ car }) {
+	const [count, setCount] = useState(0)
+
 	return (
 		<div key={car.id} className={styles.item}>
 			<div

@@ -1,5 +1,6 @@
 // import { useMemo } from 'react'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../../providers/AuthProvider'
 import { CarService } from '../../../services/car.service'
 import styles from './Home.module.css'
 import CarItem from './car-item/CarItem'
@@ -32,9 +33,21 @@ function Home() {
 		fetchData()
 	}, [])
 
+	const { user, setUser } = useContext(AuthContext)
+
 	return (
 		<div>
 			<h1>Cars catalog</h1>
+
+			{user ? (
+				<>
+					<h2>Welcome, {user.name}!</h2>
+					<button onClick={() => setUser(null)}>Logout</button>
+				</>
+			) : (
+				<button onClick={() => setUser({ name: 'Max' })}>Login</button>
+			)}
+
 			<CreateCarForm setCars={setCars} />
 			<div className={styles.cars}>
 				{cars.length ? (
