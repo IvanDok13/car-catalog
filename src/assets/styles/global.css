@@ -15,3 +15,22 @@ body {
 h1 {
 	margin-bottom: 20px;
 }
+
+.btn {
+	display: flex;
+	justify-content: center;
+	white-space: nowrap;
+	font-size: 16px;
+	text-align: center;
+	align-items: center;
+	padding: 6px 30px;
+	border-radius: 5px;
+	border: none;
+	background-color: #1a1a1a;
+	cursor: pointer;
+	transition: border-color 0.25s;
+	text-decoration: none;
+	color: #1a1a1a;
+	background-color: #ffffff;
+	max-width: 100px;
+}

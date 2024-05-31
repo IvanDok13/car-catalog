@@ -1,6 +1,7 @@
 // import { useMemo } from 'react'
 import { useEffect, useState } from 'react'
 import { CarService } from '../../../services/car.service'
+import styles from './Home.module.css'
 import CarItem from './car-item/CarItem'
 import CreateCarForm from './create-car-form/CreateCar'
 
@@ -25,7 +26,6 @@ function Home() {
 	useEffect(() => {
 		const fetchData = async () => {
 			const data = await CarService.getAll()
-
 			setCars(data)
 		}
 
@@ -36,7 +36,7 @@ function Home() {
 		<div>
 			<h1>Cars catalog</h1>
 			<CreateCarForm setCars={setCars} />
-			<div>
+			<div className={styles.cars}>
 				{cars.length ? (
 					cars.map(car => <CarItem key={car.id} car={car} />)
 				) : (

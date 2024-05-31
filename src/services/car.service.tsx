@@ -9,6 +9,6 @@ export const CarService = {
 		const response = await axios.get(
 			`https://freetestapi.com/api/v1/cars?id=${id}`
 		)
-		return response.data[0]
+		return response.data[id - 1]
 	},
 }

@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import styles from '../Home.module.css'
+import Price from './Price'
 
 function CarItem({ car }) {
 	return (
@@ -8,14 +10,12 @@ function CarItem({ car }) {
 				style={{ backgroundImage: `url(${car.image})` }}
 			></div>
 			<div className={styles.info}>
-				<h2>{car.name}</h2>
-				<p>
-					{new Intl.NumberFormat('ru-RU', {
-						style: 'currency',
-						currency: 'USD',
-					}).format(car.price)}
-				</p>
-				<button>Read more</button>
+				<h2>{car.make}</h2>
+				<button onClick={() => setCount(prev => prev + 1)}>Click</button>
+				<Price price={car.price} />
+				<Link className='btn' to={`/car/${car.id}`}>
+					Read more
+				</Link>
 			</div>
 		</div>
 	)

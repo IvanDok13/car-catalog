@@ -1,6 +1,15 @@
+.cars {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+}
+
 .item {
 	border: 1px solid gray;
-	margin-bottom: 30px;
+	/* margin-bottom: 30px; */
+	width: 500px;
 }
 
 .image {
