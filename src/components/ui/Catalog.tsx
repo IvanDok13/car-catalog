@@ -1,7 +1,12 @@
-import CarItem from '../screens/home/car-item/CarItem'
+import { FC } from 'react'
+import { ICar } from '../../types/car.interface'
 import styles from '../screens/home/Home.module.css'
+import CarItem from '../screens/home/car-item/CarItem'
 
-const Catalog = ({ data }) => {
+interface ICatalog {
+	data?: ICar[]
+}
+const Catalog: FC<ICatalog> = ({ data = [] }) => {
 	return (
 		<div className={styles.cars}>
 			{data.length ? (

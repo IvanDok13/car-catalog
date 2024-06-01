@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { ICarData } from '../../../../types/car.interface'
 import styles from './CreateCarForm.module.css'
 import ErrorMessage from './ErrorMessage'
 import useCreateCar from './useCreateCar'
@@ -6,10 +7,9 @@ import useCreateCar from './useCreateCar'
 const CreateCarForm = () => {
 	const {
 		register,
-		reset,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<ICarData>({
 		mode: 'onChange',
 	})
 

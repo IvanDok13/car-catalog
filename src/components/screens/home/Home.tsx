@@ -1,4 +1,3 @@
-// import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { CarService } from '../../../services/car.service'
 import Catalog from '../../ui/Catalog'
