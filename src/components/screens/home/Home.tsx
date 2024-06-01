@@ -1,10 +1,8 @@
 // import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useContext } from 'react'
-import { AuthContext } from '../../../providers/AuthProvider'
 import { CarService } from '../../../services/car.service'
-import styles from './Home.module.css'
-import CarItem from './car-item/CarItem'
+import Catalog from '../../ui/Catalog'
+import Header from '../../ui/Header'
 import CreateCarForm from './create-car-form/CreateCar'
 
 function Home() {
@@ -39,32 +37,15 @@ function Home() {
 	// 	fetchData()
 	// }, [])
 
-	const { user, setUser } = useContext(AuthContext)
-
 	if (isLoading) return <p>Loading...</p>
 	if (error) return <p>Error</p>
 
 	return (
 		<div>
 			<h1>Cars catalog</h1>
-
-			{user ? (
-				<>
-					<h2>Welcome, {user.name}!</h2>
-					<button onClick={() => setUser(null)}>Logout</button>
-				</>
-			) : (
-				<button onClick={() => setUser({ name: 'Max' })}>Login</button>
-			)}
-
+			<Header />
 			<CreateCarForm />
-			<div className={styles.cars}>
-				{data.length ? (
-					data.map(car => <CarItem key={car.id} car={car} />)
-				) : (
-					<p>There are not cars</p>
-				)}
-			</div>
+			<Catalog data={data} />
 		</div>
 	)
 }
