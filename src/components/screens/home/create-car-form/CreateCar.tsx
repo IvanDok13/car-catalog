@@ -18,12 +18,23 @@ const CreateCarForm = () => {
 		mode: 'onChange',
 	})
 
+	// const queryClient = useQueryClient()
+	// const { mutate } = useMutation(
+	// 	['create car'],
+	// 	data => CarService.create(data),
+	// 	{
+	// 		onSuccess: () => {
+	// QueryClient.invalidateQueries('cars')
+	// reset(),
+	// 	}
+	// )
+
 	// const createCar = e => {
 	// e.preventDefault()
 	const createCar = data => {
 		// setCars(prev => [{ id: prev.length + 1, ...data }, ...prev])
-
 		reset()
+		// mutate(data)
 	}
 
 	return (

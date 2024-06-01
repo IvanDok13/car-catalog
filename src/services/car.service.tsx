@@ -11,4 +11,8 @@ export const CarService = {
 		)
 		return response.data[id - 1]
 	},
+
+	async create(data) {
+		return axios.post('https://freetestapi.com/api/v1/cars', data)
+	},
 }
